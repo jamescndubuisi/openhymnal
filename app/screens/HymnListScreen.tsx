@@ -1,133 +1,13 @@
-// // screens/HymnListScreen.tsx
-// import React from 'react';
-// import { View, FlatList, Text, TouchableOpacity } from 'react-native';
-// import { StackNavigationProp } from '@react-navigation/stack';
-// import hymns from '../database/db.json';
 
-// type Hymn = typeof hymns[ keyof typeof hymns ];
-// type NavigationProps = StackNavigationProp< { HymnList: undefined; HymnDetail: { hymn: Hymn } } >;
-
-// interface Props {
-//   navigation: NavigationProps;
-// }
-
-// const HymnListScreen: React.FC<Props> = ({ navigation }) => {
-//   const hymnList = Object.values(hymns);
-
-//   return (
-//     <View>
-//       <FlatList
-//         data={hymnList}
-//         keyExtractor={item => item.number}
-//         renderItem={({ item }) => (
-//           <TouchableOpacity
-//             onPress={() => navigation.navigate('HymnDetail', { hymn: item })}
-//           >
-//             <Text>{item.titleWithHymnNumber}</Text>
-//           </TouchableOpacity>
-//         )}
-//       />
-//     </View>
-//   );
-// };
-
-// export default HymnListScreen;
-
-
-
-// screens/HymnListScreen.tsx
-// import React from 'react';
-// import { 
-//   View, 
-//   FlatList, 
-//   Text, 
-//   TouchableOpacity, 
-//   StyleSheet,
-//   SafeAreaView,
-//   StatusBar
-// } from 'react-native';
-// import { StackNavigationProp } from '@react-navigation/stack';
-// import hymnData from '../database/db.json';
-
-// // Define the type based on the actual data structure
-// type Hymn = {
-//   number: string;
-//   title: string;
-//   titleWithHymnNumber: string;
-//   chorus: string;
-//   verses: string[];
-//   sound: string;
-//   category: string;
-// };
-
-// type RootStackParamList = {
-//   HymnList: undefined;
-//   HymnDetail: { hymn: Hymn };
-// };
-
-// type NavigationProps = StackNavigationProp<RootStackParamList, 'HymnList'>;
-
-// interface Props {
-//   navigation: NavigationProps;
-// }
-
-// const HymnListScreen: React.FC<Props> = ({ navigation }) => {
-//   // Correctly parse the nested hymns object
-//   const hymnList = Object.values(hymnData.hymns);
-
-//   const renderHymnItem = ({ item }: { item: Hymn }) => (
-//     <TouchableOpacity
-//       style={styles.hymnItem}
-//       onPress={() => navigation.navigate('HymnDetail', { hymn: item })}
-//       activeOpacity={0.7}
-//     >
-//       <View style={styles.hymnContent}>
-//         <Text style={styles.hymnNumber}>{item.number}.</Text>
-//         <Text style={styles.hymnTitle} numberOfLines={2}>
-//           {item.title}
-//         </Text>
-//       </View>
-//       <Text style={styles.categoryText}>{item.category}</Text>
-//     </TouchableOpacity>
-//   );
-
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <StatusBar barStyle="dark-content" />
-//       <FlatList
-//         data={hymnList}
-//         keyExtractor={item => item.number}
-//         renderItem={renderHymnItem}
-//         contentContainerStyle={styles.listContent}
-//         ItemSeparatorComponent={() => <View style={styles.separator} />}
-//       />
-//     </SafeAreaView>
-//   );
-// };
-
-
-
-// export default HymnListScreen;
+// HymnListScreen.tsx
 import React from 'react';
-import {View,FlatList, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar} from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import hymnsData from '../database/db.json';
-
-
-interface Hymn {
-  number: string;
-  title: string;
-  titleWithHymnNumber: string;
-  chorus: string | boolean;
-  verses: string[];
-  sound: string;
-  category: string;
-}
-
-type NavigationProps = StackNavigationProp<{ HymnList: undefined; HymnDetail: { hymn: Hymn } }>;
+import { Hymn } from '../(tabs)/AppNavigator';
 
 interface Props {
-  navigation: NavigationProps;
+  navigation: StackNavigationProp<{ HymnList: undefined; HymnDetail: { hymn: Hymn }; Search: undefined }>;
 }
 
 const HymnListScreen: React.FC<Props> = ({ navigation }) => {
@@ -136,42 +16,52 @@ const HymnListScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
+      {/* <TouchableOpacity
+        style={styles.searchButton}
+        onPress={() => navigation.navigate('Search')}
+      >
+        <Text style={styles.searchButtonText}>Search Hymns</Text>
+      </TouchableOpacity> */}
       <FlatList
         data={hymnList}
         keyExtractor={item => item.number}
-        
         renderItem={({ item }) => (
-          // <TouchableOpacity style={styles.hymnItem}
-          //   onPress={() => navigation.navigate('HymnDetail', { hymn: item })}
-          // >
-          //   <Text style={styles.hymnTitle} numberOfLines={2}>{item.titleWithHymnNumber}</Text>
-          // </TouchableOpacity>
           <TouchableOpacity
-      style={styles.hymnItem}
-      onPress={() => navigation.navigate('HymnDetail', { hymn: item })}
-      activeOpacity={0.7}
-    >
-      <View style={styles.hymnContent}>
-        <Text style={styles.hymnNumber}>{item.number}.</Text>
-        <Text style={styles.hymnTitle} numberOfLines={2}>
-          {item.title}
-        </Text>
-      </View>
-      <Text style={styles.categoryText}>{item.category}</Text>
-    </TouchableOpacity>
+            style={styles.hymnItem}
+            onPress={() => navigation.navigate('HymnDetail', { hymn: item })}
+            activeOpacity={0.7}
+          >
+            <View style={styles.hymnContent}>
+              <Text style={styles.hymnNumber}>{item.number}.</Text>
+              <Text style={styles.hymnTitle} numberOfLines={2}>
+                {item.title}
+              </Text>
+            </View>
+            <Text style={styles.categoryText}>{item.category}</Text>
+          </TouchableOpacity>
         )}
-
         contentContainerStyle={styles.listContent}
-         ItemSeparatorComponent={() => <View style={styles.separator} />} />
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      />
     </SafeAreaView>
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#B59B7C',
+  },
+  searchButton: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 8,
+  },
+  searchButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   listContent: {
     paddingVertical: 8,
@@ -179,7 +69,7 @@ const styles = StyleSheet.create({
   hymnItem: {
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#B59B7C',
   },
   hymnContent: {
     flexDirection: 'row',
@@ -209,4 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E1E1E1',
   },
 });
+
 export default HymnListScreen;
+
+

@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   hymnNumber: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: '500',
     minWidth: 32,
     color: '#666',
   },
   hymnTitle: {
-    fontSize: 16,
+    fontSize: 20,
     flex: 1,
     lineHeight: 22,
     color: '#000',

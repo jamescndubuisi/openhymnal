@@ -8,7 +8,15 @@ const HymnDetailScreen: React.FC<HymnDetailScreenProps> = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{hymn.titleWithHymnNumber}</Text>
-      <Text style={styles.chorus}>{hymn.chorus}</Text>
+      {/* <Text style={styles.chorus}>{hymn.chorus}</Text> */}
+      {hymn.chorus && typeof hymn.chorus === 'string' && (
+        <View>
+          <Text style={styles.chorustitle}>Chorus:</Text>
+        <Text style={styles.chorus}>{hymn.chorus}</Text>
+        </View>
+        
+    
+  )}
       {hymn.verses.map((verse, index) => (
         <Text key={index} style={styles.verse}>
           {verse}
@@ -32,9 +40,17 @@ const styles = StyleSheet.create({
   chorus: {
     fontStyle: 'italic',
     marginBottom: 16,
+    fontSize: 20,
+  },
+  chorustitle: {
+    fontStyle: 'italic',
+    marginBottom: 5,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   verse: {
     marginBottom: 12,
+    fontSize:20,
   },
 });
 

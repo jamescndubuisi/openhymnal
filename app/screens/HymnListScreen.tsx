@@ -114,12 +114,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import hymnsData from '../database/db.json';
 
 
-
 interface Hymn {
   number: string;
   title: string;
   titleWithHymnNumber: string;
-  chorus: string;
+  chorus: string | boolean;
   verses: string[];
   sound: string;
   category: string;

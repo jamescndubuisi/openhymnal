@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,7 +9,7 @@ export interface Hymn {
   number: string;
   title: string;
   titleWithHymnNumber: string;
-  chorus: string;
+  chorus: string | boolean;
   verses: string[];
   sound: string;
   category: string;

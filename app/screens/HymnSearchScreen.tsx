@@ -1,7 +1,6 @@
 // SearchScreen.tsx
 import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
 import hymnsData from '../database/db.json';
 import  { SearchScreenProps }  from '../(tabs)/AppNavigator';
 

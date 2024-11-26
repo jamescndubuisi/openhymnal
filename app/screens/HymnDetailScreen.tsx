@@ -8,7 +8,6 @@ const HymnDetailScreen: React.FC<HymnDetailScreenProps> = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{hymn.titleWithHymnNumber}</Text>
-      {/* <Text style={styles.chorus}>{hymn.chorus}</Text> */}
       {hymn.chorus && typeof hymn.chorus === 'string' && (
         <View>
           <Text style={styles.chorustitle}>Chorus:</Text>
@@ -33,14 +32,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#B59B7C',
   },
   title: {
-    fontSize: 20,
+    fontSize: 21,
     fontWeight: 'bold',
     marginBottom: 16,
   },
   chorus: {
     fontStyle: 'italic',
     marginBottom: 16,
-    fontSize: 20,
+    fontSize: 21,
   },
   chorustitle: {
     fontStyle: 'italic',
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   },
   verse: {
     marginBottom: 12,
-    fontSize:20,
+    fontSize:21,
   },
 });
 

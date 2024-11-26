@@ -16,12 +16,6 @@ const HymnListScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      {/* <TouchableOpacity
-        style={styles.searchButton}
-        onPress={() => navigation.navigate('Search')}
-      >
-        <Text style={styles.searchButtonText}>Search Hymns</Text>
-      </TouchableOpacity> */}
       <FlatList
         data={hymnList}
         keyExtractor={item => item.number}
